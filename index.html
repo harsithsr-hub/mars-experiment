@@ -19,6 +19,10 @@
 
 <div id="task" class="tab">
   <h2>Draw Polygons on Mars Image</h2>
+
+  <img id="marsImg" width="500"
+src="https://mars.nasa.gov/system/resources/detail_files/25052_PIA23764-320.jpg">
+  
   <p>Color key: Red = Sand, Blue = Bedrock, Green = Dust</p>
   <canvas id="canvas" width="500" height="400"></canvas><br>
   <button onclick="startTrial()">Start Trial</button>
@@ -45,13 +49,20 @@
 <script>
 let startTime;
 let trial = 1;
-
+let images = [
+"https://mars.nasa.gov/system/resources/detail_files/25052_PIA23764-320.jpg",
+"https://mars.nasa.gov/system/resources/detail_files/25743_PIA24420-320.jpg",
+"https://mars.nasa.gov/system/resources/detail_files/25678_PIA24304-320.jpg",
+"https://mars.nasa.gov/system/resources/detail_files/25053_PIA23765-320.jpg",
+"https://mars.nasa.gov/system/resources/detail_files/25675_PIA24301-320.jpg"
+];
 function showTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.style.display = 'none');
   document.getElementById(id).style.display = 'block';
 }
 
 function startTrial() {
+  document.getElementById("marsImg").src = images[trial-1];
   startTime = Date.now();
   alert("Trial " + trial + " started");
 }
