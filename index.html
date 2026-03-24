@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mars Soil Experiment</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .tab { display: none; }
+    button { margin: 5px; }
+    canvas { border: 1px solid black; }
+  </style>
+</head>
+<body>
+
+<h1>Mars AI vs Human Experiment</h1>
+
+<button onclick="showTab('task')">Task</button>
+<button onclick="showTab('tutorial')">Tutorial</button>
+<button onclick="showTab('results')">Results</button>
+
+<div id="task" class="tab">
+  <h2>Draw Polygons on Mars Image</h2>
+  <p>Color key: Red = Sand, Blue = Bedrock, Green = Dust</p>
+  <canvas id="canvas" width="500" height="400"></canvas><br>
+  <button onclick="startTrial()">Start Trial</button>
+  <button onclick="finishTrial()">Finish</button>
+</div>
+
+<div id="tutorial" class="tab">
+  <h2>How to Identify Soil Types</h2>
+  <ul>
+    <li>Sand: smooth, lighter color</li>
+    <li>Bedrock: solid, cracked patterns</li>
+    <li>Dust: very fine, reddish layer</li>
+  </ul>
+</div>
+
+<div id="results" class="tab">
+  <h2>Results</h2>
+  <table border="1">
+    <tr><th>Trial</th><th>Time (sec)</th><th>Accuracy (%)</th></tr>
+    <tbody id="resultsTable"></tbody>
+  </table>
+</div>
+
+<script>
+let startTime;
+let trial = 1;
+
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function startTrial() {
+  startTime = Date.now();
+  alert("Trial " + trial + " started");
+}
+
+function finishTrial() {
+  let time = Math.floor((Date.now() - startTime)/1000);
+  let accuracy = Math.floor(Math.random()*40 + 60); // placeholder
+
+  let row = `<tr><td>${trial}</td><td>${time}</td><td>${accuracy}</td></tr>`;
+  document.getElementById("resultsTable").innerHTML += row;
+
+  trial++;
+}
+
+showTab('task');
+</script>
+
+</body>
+</html>
